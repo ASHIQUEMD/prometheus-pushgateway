@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-go-app
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: my-go-app
+  template:
+    metadata:
+      labels:
+        app: my-go-app
+    spec:
+      containers:
+      - name: my-go-app
+        image: mdashique/my-go-app:latest  # Replace with the name and tag of your Docker image
+        imagePullPolicy: Always
+        env:
+        - name: DAPR_PERF_METRICS_PROMETHEUS_URL
+          value: "http://prometheus-pushgateway.dapr-perf-metrics.svc.cluster.local:9091"  # Replace with the actual Prometheus URL

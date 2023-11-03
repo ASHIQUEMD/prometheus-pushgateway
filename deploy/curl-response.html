@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="robots" content="noindex,nofollow">
+        <title>Prometheus Pushgateway</title>
+
+        <link rel="shortcut icon" href="./static/favicon.ico?v=e3b066c58ca1fec4433503f0aea4094322dcff4e">
+
+        <script src="./static/jquery-3.5.1.min.js?v=e3b066c58ca1fec4433503f0aea4094322dcff4e"></script>
+        <script src="./static/bootstrap-4.3.1-dist/js/bootstrap.min.js?v=e3b066c58ca1fec4433503f0aea4094322dcff4e"></script>
+        <script src="./static/functions.js?v=e3b066c58ca1fec4433503f0aea4094322dcff4e"></script>
+
+        <link type="text/css" rel="stylesheet" href="./static/bootstrap-4.3.1-dist/css/bootstrap.min.css?v=e3b066c58ca1fec4433503f0aea4094322dcff4e">
+        <link type="text/css" rel="stylesheet" href="./static/prometheus.css?v=e3b066c58ca1fec4433503f0aea4094322dcff4e">
+        <link type="text/css" rel="stylesheet" href="./static/bootstrap4-glyphicons/css/bootstrap-glyphicons.min.css?v=e3b066c58ca1fec4433503f0aea4094322dcff4e">
+</head>
+
+<body>
+        <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+                <div class="container-fluid">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-content" aria-expanded="false" aria-controls="nav-content" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Pushgateway</a>
+
+                        <div id="nav-content" class="navbar-collapse collapse">
+                                <ul class="navbar-nav">
+                                        <li class="nav-item active" onclick="pushgateway.switchToMetrics()" id="metrics-li">
+                                                <a class="nav-link" href="#">Metrics</a>
+                                        </li>
+                                        <li class="nav-item" onclick="pushgateway.switchToStatus()" id="status-li">
+                                                <a class="nav-link" href="#">Status</a>
+                                        </li>
+                                        <li class="nav-item" >
+                                                <a class ="nav-link" href="https://github.com/prometheus/pushgateway/blob/master/README.md" target="_blank">Help</a>
+                                        </li>
+                                </ul>
+                        </div>
+                </div>
+        </nav>
+
+        <div class="container-fluid" id="metrics-div">
+                <div class="accordion" id="job-accordion">
+        <div class="card">
+                <div class="card-header" id="group-panel-1">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#j-1" aria-expanded="false" aria-controls="j-1">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>
+                                        <span class="badge badge-warning">job="state_get_http"</span>
+                                        <span class="badge badge-info">component="inmemory"</span>
+                                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                                </button>
+                                <button class="btn btn-xs btn-danger float-right" onclick="pushgateway.showDelModal({ 'job': 'state_get_http', 'component': 'inmemory', 'perf_test': 'state_get_http' }, { 'job': 'c3RhdGVfZ2V0X2h0dHA', 'component': 'aW5tZW1vcnk', 'perf_test': 'c3RhdGVfZ2V0X2h0dHA' }, 'group-panel-1', event)">Delete Group</button>
+                        </h2>
+                </div>
+                <div id="j-1" class="collapse" aria-labelledby="group-panel-1" data-parent="#job-accordion">
+                        <div class="card-body">
+                                <div class="accordion" id="metric-accordion-1">
+        <div class="card">
+                <div class="card-header" id="metric-panel-2">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-2" aria-expanded="false" aria-controls="#m-2" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>APPLICATION_THROUGHPUT
+                                        <span class="badge badge-light">Actual QPS</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-2" class="collapse" aria-labelledby="metric-panel-2" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-3">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-3" aria-expanded="false" aria-controls="#m-3" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>APP_CPU_USAGE
+                                        <span class="badge badge-light">CPU Usage by app</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-3" class="collapse" aria-labelledby="metric-panel-3" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-4">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-4" aria-expanded="false" aria-controls="#m-4" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>APP_MEMORY_USAGE
+                                        <span class="badge badge-light">Memory Usage by app</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-4" class="collapse" aria-labelledby="metric-panel-4" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-5">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-5" aria-expanded="false" aria-controls="#m-5" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>BASELINE_RESPONSE_TIME
+                                        <span class="badge badge-light">Average Response Time of Baseline Test</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-5" class="collapse" aria-labelledby="metric-panel-5" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-6">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-6" aria-expanded="false" aria-controls="#m-6" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>DAPR_RESPONSE_TIME
+                                        <span class="badge badge-light">Average Respone Time of Dapr Test</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-6" class="collapse" aria-labelledby="metric-panel-6" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-7">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-7" aria-expanded="false" aria-controls="#m-7" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>DAPR_SIDECAR_CPU_USAGE
+                                        <span class="badge badge-light">CPU Usage by Dapr Sidecar</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-7" class="collapse" aria-labelledby="metric-panel-7" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-8">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-8" aria-expanded="false" aria-controls="#m-8" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>DAPR_SIDECAR_MEMORY_USAGE
+                                        <span class="badge badge-light">Memory Usage by Dapr Sidecar</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-8" class="collapse" aria-labelledby="metric-panel-8" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-9">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-9" aria-expanded="false" aria-controls="#m-9" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>LATENCY_BY_DAPR
+                                        <span class="badge badge-light">Added Latency by Dapr Sidecar</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-9" class="collapse" aria-labelledby="metric-panel-9" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-10">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-10" aria-expanded="false" aria-controls="#m-10" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>push_failure_time_seconds
+                                        <span class="badge badge-light">Last Unix time when changing this group in the Pushgateway failed.</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T11:33:45Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-10" class="collapse" aria-labelledby="metric-panel-10" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>0
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-11">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-11" aria-expanded="false" aria-controls="#m-11" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>push_time_seconds
+                                        <span class="badge badge-light">Last Unix time when changing this group in the Pushgateway succeeded.</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:14Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-11" class="collapse" aria-labelledby="metric-panel-11" data-parent="#metric-accordion-1" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-info">component="inmemory"</span>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="state_get_http"</span>
+                        <span class="badge badge-info">perf_test="state_get_http"</span>
+                </td>
+                <td>1698246374.0997727
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="group-panel-12">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#j-12" aria-expanded="false" aria-controls="j-12">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>
+                                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                                </button>
+                                <button class="btn btn-xs btn-danger float-right" onclick="pushgateway.showDelModal({ 'job': 'service-invocation-http', 'perf_test': 'service-invocation-http' }, { 'job': 'c2VydmljZS1pbnZvY2F0aW9uLWh0dHA', 'perf_test': 'c2VydmljZS1pbnZvY2F0aW9uLWh0dHA' }, 'group-panel-12', event)">Delete Group</button>
+                        </h2>
+                </div>
+                <div id="j-12" class="collapse" aria-labelledby="group-panel-12" data-parent="#job-accordion">
+                        <div class="card-body">
+                                <div class="accordion" id="metric-accordion-12">
+        <div class="card">
+                <div class="card-header" id="metric-panel-13">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-13" aria-expanded="false" aria-controls="#m-13" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>APPLICATION_THROUGHPUT
+                                        <span class="badge badge-light">Actual QPS</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-13" class="collapse" aria-labelledby="metric-panel-13" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-14">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-14" aria-expanded="false" aria-controls="#m-14" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>APP_CPU_USAGE
+                                        <span class="badge badge-light">CPU Usage by app</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-14" class="collapse" aria-labelledby="metric-panel-14" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-15">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-15" aria-expanded="false" aria-controls="#m-15" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>APP_MEMORY_USAGE
+                                        <span class="badge badge-light">Memory Usage by app</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-15" class="collapse" aria-labelledby="metric-panel-15" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-16">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-16" aria-expanded="false" aria-controls="#m-16" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>BASELINE_RESPONSE_TIME
+                                        <span class="badge badge-light">Average Response Time of Baseline Test</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-16" class="collapse" aria-labelledby="metric-panel-16" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-17">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-17" aria-expanded="false" aria-controls="#m-17" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>DAPR_RESPONSE_TIME
+                                        <span class="badge badge-light">Average Respone Time of Dapr Test</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-17" class="collapse" aria-labelledby="metric-panel-17" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-18">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-18" aria-expanded="false" aria-controls="#m-18" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>DAPR_SIDECAR_CPU_USAGE
+                                        <span class="badge badge-light">CPU Usage by Dapr Sidecar</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-18" class="collapse" aria-labelledby="metric-panel-18" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-19">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-19" aria-expanded="false" aria-controls="#m-19" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>DAPR_SIDECAR_MEMORY_USAGE
+                                        <span class="badge badge-light">Memory Usage by Dapr Sidecar</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-19" class="collapse" aria-labelledby="metric-panel-19" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-20">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-20" aria-expanded="false" aria-controls="#m-20" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>LATENCY_BY_DAPR
+                                        <span class="badge badge-light">Added Latency by Dapr Sidecar</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-20" class="collapse" aria-labelledby="metric-panel-20" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>20
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-21">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-21" aria-expanded="false" aria-controls="#m-21" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>push_failure_time_seconds
+                                        <span class="badge badge-light">Last Unix time when changing this group in the Pushgateway failed.</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T11:33:45Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-21" class="collapse" aria-labelledby="metric-panel-21" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>0
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header" id="metric-panel-22">
+                        <h2 class="mb-0">
+                                <button class="btn btn-secondary collapsed" type="button" data-toggle="collapse" data-target="#m-22" aria-expanded="false" aria-controls="#m-22" style="text-align:left">
+                                        <span class="toggle-icon glyphicon glyphicon-collapse-down"></span>push_time_seconds
+                                        <span class="badge badge-light">Last Unix time when changing this group in the Pushgateway succeeded.</span>
+                                        <span class="badge badge-success">GAUGE</span>
+                                        last pushed: 2023-10-25T15:06:13Z
+                                </button>
+                        </h2>
+                </div>
+                <div id="m-22" class="collapse" aria-labelledby="metric-panel-22" data-parent="#metric-accordion-12" >
+                        <div class="card-body" style="max-width: 100%; overflow-x: auto">
+                                <table class="table table-striped table-bordered">
+                                        <thead>
+                                                <tr>
+                                                        <th>Labels</th>
+                                                        <th>Value</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+        <tr>
+                <td>
+                        <span class="badge badge-primary">instance=""</span>
+                        <span class="badge badge-warning">job="service-invocation-http"</span>
+                        <span class="badge badge-info">perf_test="service-invocation-http"</span>
+                </td>
+                <td>1698246373.7839348
+                </td>
+        </tr>
+        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+                </div>
+        </div>
+
+        <div class="container-fluid" id="status-div" style="display: none;">
+                <h2>Runtime Information</h2>
+                <table class="table table-condensed table-bordered table-striped">
+                        <tbody>
+                                <tr>
+                                        <th>Started</th>
+                                        <td>2023-10-25 11:28:18.158816114 &#43;0000 UTC m=&#43;0.004182254</td>
+                                </tr>
+                        </tbody>
+                </table>
+
+                <h2>Build Information</h2>
+                <table class="table table-condensed table-bordered table-striped">
+                        <tbody>
+                                <tr>
+                                        <th scope="row">branch</th>
+                                        <td>HEAD</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">buildDate</th>
+                                        <td>20230906-13:43:26</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">buildUser</th>
+                                        <td>root@500f14c645d0</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">goVersion</th>
+                                        <td>go1.21.0</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">revision</th>
+                                        <td>e3b066c58ca1fec4433503f0aea4094322dcff4e</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">version</th>
+                                        <td>1.6.1</td>
+                                </tr>
+                        </tbody>
+                </table>
+
+                <h2>Startup Flags</h2>
+                <table class="table table-condensed table-bordered table-striped">
+                        <tbody>
+                                <tr>
+                                        <th scope="row">log.format</th>
+                                        <td>logfmt</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">log.level</th>
+                                        <td>info</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">persistence.file</th>
+                                        <td></td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">persistence.interval</th>
+                                        <td>5m0s</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">push.disable-consistency-check</th>
+                                        <td>false</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.config.file</th>
+                                        <td></td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.enable-admin-api</th>
+                                        <td>false</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.enable-lifecycle</th>
+                                        <td>false</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.external-url</th>
+                                        <td></td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.listen-address</th>
+                                        <td>:9091</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.route-prefix</th>
+                                        <td></td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.systemd-socket</th>
+                                        <td>false</td>
+                                </tr>
+                                <tr>
+                                        <th scope="row">web.telemetry-path</th>
+                                        <td>/metrics</td>
+                                </tr>
+                        </tbody>
+                </table>
+        </div>
+
+
+        <div id="del-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="del-header" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title">Deletion Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                        <p id="del-modal-msg"></p>
+                                </div>
+                                <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-primary btn-danger" onclick="pushgateway.deleteGroup()">Delete</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+
+        <div id="del-all-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="del-header" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title">Deletion Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                        <p id="del-modal-all-msg"></p>
+                                </div>
+                                <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-primary btn-danger" onclick="pushgateway.deleteAllGroup()">Delete All</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+</body>
+</html>

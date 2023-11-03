@@ -1,0 +1,7 @@
+DAPR_PERF_METRICS_NAMESPACE=dapr-perf-metrics
+kubectl create namespace $DAPR_PERF_METRICS_NAMESPACE
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install --namespace $DAPR_PERF_METRICS_NAMESPACE prometheus-pushgateway prometheus-community/prometheus-pushgateway -f values.yaml
+
+helm install --namespace $DAPR_PERF_METRICS_NAMESPACE prometheus prometheus-community/prometheus

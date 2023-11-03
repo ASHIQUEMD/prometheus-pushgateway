@@ -1,0 +1,7 @@
+apiVersion: monitoring.core.windows.net/v1
+kind: AzureMonitorTarget
+metadata:
+  name: dapr-perf-metrics
+spec:
+  global:
+    target: custom-prometheus-config
