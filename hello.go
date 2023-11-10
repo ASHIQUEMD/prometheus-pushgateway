@@ -43,7 +43,7 @@ func main() {
 	for i := 0; i < counter; i++ {
 
 		// Generate a random number between 1 and 20
-		randomNumber := random.Intn(1500) + 1
+		randomNumber := random.Intn(15000) + 1
 
 		daprSIMetrics := utils.DaprMetrics{
 			BaselineLatency:       float64(i + randomNumber + 5),
@@ -57,7 +57,7 @@ func main() {
 		}
 		utils.PushPrometheusMetrics(daprSIMetrics, "service-invocation-http", "")
 
-		randomNumber = random.Intn(600) + 1
+		randomNumber = random.Intn(6000) + 1
 
 		daprStateMetrics := utils.DaprMetrics{
 			BaselineLatency:       float64(i + randomNumber + 5),
